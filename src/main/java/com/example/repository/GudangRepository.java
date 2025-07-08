@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface GudangRepository extends JpaRepository<Gudang, Long> {
     Gudang findByKodeGudang(String kodeGudang);
-    List<Gudang> findByKodeKantor(String kodeKantor);
+    List<Gudang> findByKantor_Id(Long kantorId);
 } 

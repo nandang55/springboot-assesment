@@ -1,7 +1,10 @@
 package com.example.service.impl;
 
 import com.example.model.pojo.Gudang;
+import com.example.model.pojo.Kantor;
+import com.example.model.pojo.GudangRequest;
 import com.example.repository.GudangRepository;
+import com.example.repository.KantorRepository;
 import com.example.service.GudangService;
 import com.example.wrapper.DataResponse;
 import com.example.wrapper.ListResponse;
@@ -21,6 +24,8 @@ public class GudangServiceImpl implements GudangService {
 
     @Autowired
     private GudangRepository gudangRepository;
+    @Autowired
+    private KantorRepository kantorRepository;
 
     @Override
     public DataResponse<Gudang> findById(Long id) {
@@ -46,20 +51,26 @@ public class GudangServiceImpl implements GudangService {
     }
 
     @Override
-    public ListResponse<Gudang> findByKodeKantor(String kodeKantor) {
+    public ListResponse<Gudang> findByKantorId(Long kantorId) {
         try {
-            List<Gudang> list = gudangRepository.findByKodeKantor(kodeKantor);
+            List<Gudang> list = gudangRepository.findByKantor_Id(kantorId);
             return new ListResponse<>(list);
         } catch (Exception e) {
-            log.error("Gagal findByKodeKantor Gudang", e);
+            log.error("Gagal findByKantorId Gudang", e);
             throw e;
         }
     }
 
     @Transactional
     @Override
-    public DataResponse<Gudang> create(Gudang gudang) {
+    public DataResponse<Gudang> create(GudangRequest request) {
         try {
+            Kantor kantor = kantorRepository.findById(request.getKantorId())
+                .orElseThrow(() -> new NotFoundException("Kantor tidak ditemukan"));
+            Gudang gudang = new Gudang();
+            gudang.setKodeGudang(request.getKodeGudang());
+            gudang.setNamaGudang(request.getNamaGudang());
+            gudang.setKantor(kantor);
             gudang.setWaktuRekam(LocalDateTime.now());
             gudang.setWaktuUpdate(LocalDateTime.now());
             Gudang saved = gudangRepository.save(gudang);
@@ -72,12 +83,15 @@ public class GudangServiceImpl implements GudangService {
 
     @Transactional
     @Override
-    public DataResponse<Gudang> update(Long id, Gudang gudang) {
+    public DataResponse<Gudang> update(Long id, GudangRequest request) {
         try {
             Gudang existing = gudangRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Gudang tidak ditemukan"));
-            existing.setNamaGudang(gudang.getNamaGudang());
-            existing.setKodeKantor(gudang.getKodeKantor());
+            Kantor kantor = kantorRepository.findById(request.getKantorId())
+                .orElseThrow(() -> new NotFoundException("Kantor tidak ditemukan"));
+            existing.setNamaGudang(request.getNamaGudang());
+            existing.setKodeGudang(request.getKodeGudang());
+            existing.setKantor(kantor);
             existing.setWaktuUpdate(LocalDateTime.now());
             Gudang updated = gudangRepository.save(existing);
             return new DataResponse<>(updated);

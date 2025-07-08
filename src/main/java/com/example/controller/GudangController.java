@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.model.pojo.Gudang;
+import com.example.model.pojo.GudangRequest;
 import com.example.service.GudangService;
 import com.example.wrapper.DataResponse;
 import com.example.wrapper.ListResponse;
@@ -33,22 +34,22 @@ public class GudangController {
         return ResponseEntity.ok(gudangService.findAll());
     }
 
-    @GetMapping("/by-kode-kantor/{kodeKantor}")
-    @Operation(summary = "Get Gudang by Kode Kantor")
-    public ResponseEntity<ListResponse<Gudang>> findByKodeKantor(@PathVariable String kodeKantor) {
-        return ResponseEntity.ok(gudangService.findByKodeKantor(kodeKantor));
+    @GetMapping("/by-kantor-id/{kantorId}")
+    @Operation(summary = "Get Gudang by Kantor ID")
+    public ResponseEntity<ListResponse<Gudang>> findByKantorId(@PathVariable Long kantorId) {
+        return ResponseEntity.ok(gudangService.findByKantorId(kantorId));
     }
 
     @PostMapping
     @Operation(summary = "Create Gudang")
-    public ResponseEntity<DataResponse<Gudang>> create(@Valid @RequestBody Gudang gudang) {
-        return ResponseEntity.ok(gudangService.create(gudang));
+    public ResponseEntity<DataResponse<Gudang>> create(@Valid @RequestBody GudangRequest request) {
+        return ResponseEntity.ok(gudangService.create(request));
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update Gudang")
-    public ResponseEntity<DataResponse<Gudang>> update(@PathVariable Long id, @Valid @RequestBody Gudang gudang) {
-        return ResponseEntity.ok(gudangService.update(id, gudang));
+    public ResponseEntity<DataResponse<Gudang>> update(@PathVariable Long id, @Valid @RequestBody GudangRequest request) {
+        return ResponseEntity.ok(gudangService.update(id, request));
     }
 
     @DeleteMapping("/{id}")

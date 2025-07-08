@@ -28,9 +28,10 @@ public class Gudang {
     private String namaGudang;
 
     @NotNull
-    @Size(max = 20)
-    @Column(name = "kode_kantor", nullable = false)
-    private String kodeKantor;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "kantor_id", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Kantor kantor;
 
     @Column(name = "waktu_rekam", nullable = false, updatable = false)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
