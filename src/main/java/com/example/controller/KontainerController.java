@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.model.pojo.Kontainer;
+import com.example.model.pojo.KontainerRequest;
 import com.example.service.KontainerService;
 import com.example.wrapper.DataResponse;
 import com.example.wrapper.ListResponse;
@@ -41,14 +42,14 @@ public class KontainerController {
 
     @PostMapping
     @Operation(summary = "Create Kontainer")
-    public ResponseEntity<DataResponse<Kontainer>> create(@Valid @RequestBody Kontainer kontainer, @RequestParam Long gudangId) {
-        return ResponseEntity.ok(kontainerService.create(kontainer, gudangId));
+    public ResponseEntity<DataResponse<Kontainer>> create(@Valid @RequestBody KontainerRequest request) {
+        return ResponseEntity.ok(kontainerService.create(request));
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update Kontainer")
-    public ResponseEntity<DataResponse<Kontainer>> update(@PathVariable Long id, @Valid @RequestBody Kontainer kontainer, @RequestParam Long gudangId) {
-        return ResponseEntity.ok(kontainerService.update(id, kontainer, gudangId));
+    public ResponseEntity<DataResponse<Kontainer>> update(@PathVariable Long id, @Valid @RequestBody KontainerRequest request) {
+        return ResponseEntity.ok(kontainerService.update(id, request));
     }
 
     @DeleteMapping("/{id}")

@@ -9,8 +9,10 @@
 /Users/nandanghermawan/Project/java/spring-boot-assesment/src/main/java/com/example/repository/KontainerRepository.java
 /Users/nandanghermawan/Project/java/spring-boot-assesment/src/main/java/com/example/model/pojo/Gudang.java
 /Users/nandanghermawan/Project/java/spring-boot-assesment/src/main/java/com/example/service/impl/GudangServiceImpl.java
+/Users/nandanghermawan/Project/java/spring-boot-assesment/src/main/java/com/example/model/pojo/KontainerRequest.java
 /Users/nandanghermawan/Project/java/spring-boot-assesment/src/main/java/com/example/wrapper/DataResponse.java
 /Users/nandanghermawan/Project/java/spring-boot-assesment/src/main/java/com/example/wrapper/DefaultResponse.java
+/Users/nandanghermawan/Project/java/spring-boot-assesment/src/main/java/com/example/model/pojo/GudangRequest.java
 /Users/nandanghermawan/Project/java/spring-boot-assesment/src/main/java/com/example/controller/HelloController.java
 /Users/nandanghermawan/Project/java/spring-boot-assesment/src/main/java/com/example/controller/KontainerController.java
 /Users/nandanghermawan/Project/java/spring-boot-assesment/src/main/java/com/example/service/KontainerService.java

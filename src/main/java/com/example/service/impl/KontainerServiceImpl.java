@@ -2,6 +2,7 @@ package com.example.service.impl;
 
 import com.example.model.pojo.Kontainer;
 import com.example.model.pojo.Gudang;
+import com.example.model.pojo.KontainerRequest;
 import com.example.repository.KontainerRepository;
 import com.example.repository.GudangRepository;
 import com.example.service.KontainerService;
@@ -62,10 +63,13 @@ public class KontainerServiceImpl implements KontainerService {
 
     @Transactional
     @Override
-    public DataResponse<Kontainer> create(Kontainer kontainer, Long gudangId) {
+    public DataResponse<Kontainer> create(KontainerRequest request) {
         try {
-            Gudang gudang = gudangRepository.findById(gudangId)
+            Gudang gudang = gudangRepository.findById(request.getGudangId())
                 .orElseThrow(() -> new NotFoundException("Gudang tidak ditemukan"));
+            Kontainer kontainer = new Kontainer();
+            kontainer.setNamaKontainer(request.getNamaKontainer());
+            kontainer.setKodeKontainer(request.getKodeKontainer());
             kontainer.setGudang(gudang);
             kontainer.setWaktuRekam(LocalDateTime.now());
             kontainer.setWaktuUpdate(LocalDateTime.now());
@@ -79,13 +83,14 @@ public class KontainerServiceImpl implements KontainerService {
 
     @Transactional
     @Override
-    public DataResponse<Kontainer> update(Long id, Kontainer kontainer, Long gudangId) {
+    public DataResponse<Kontainer> update(Long id, KontainerRequest request) {
         try {
             Kontainer existing = kontainerRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Kontainer tidak ditemukan"));
-            Gudang gudang = gudangRepository.findById(gudangId)
+            Gudang gudang = gudangRepository.findById(request.getGudangId())
                 .orElseThrow(() -> new NotFoundException("Gudang tidak ditemukan"));
-            existing.setNamaKontainer(kontainer.getNamaKontainer());
+            existing.setNamaKontainer(request.getNamaKontainer());
+            existing.setKodeKontainer(request.getKodeKontainer());
             existing.setGudang(gudang);
             existing.setWaktuUpdate(LocalDateTime.now());
             Kontainer updated = kontainerRepository.save(existing);

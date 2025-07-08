@@ -18,11 +18,6 @@ public class Kontainer {
     private Long id;
 
     @NotNull
-    @Size(max = 20)
-    @Column(name = "kode_kontainer", nullable = false, unique = true)
-    private String kodeKontainer;
-
-    @NotNull
     @Size(max = 100)
     @Column(name = "nama_kontainer", nullable = false)
     private String namaKontainer;
@@ -39,4 +34,9 @@ public class Kontainer {
     @Column(name = "waktu_update", nullable = false)
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private java.time.LocalDateTime waktuUpdate;
+
+    @NotNull
+    @Size(max = 30)
+    @Column(name = "kode_kontainer", nullable = false, unique = true)
+    private String kodeKontainer;
 } 
