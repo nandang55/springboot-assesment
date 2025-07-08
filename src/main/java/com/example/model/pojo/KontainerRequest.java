@@ -19,4 +19,8 @@ public class KontainerRequest {
     @NotNull
     @Size(max = 30)
     private String kodeKontainer;
+
+    @NotNull
+    @Size(max = 50)
+    private String nomorDokumen;
 } 

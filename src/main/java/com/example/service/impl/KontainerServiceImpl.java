@@ -73,6 +73,7 @@ public class KontainerServiceImpl implements KontainerService {
             kontainer.setGudang(gudang);
             kontainer.setWaktuRekam(LocalDateTime.now());
             kontainer.setWaktuUpdate(LocalDateTime.now());
+            kontainer.setNomorDokumen(request.getNomorDokumen());
             Kontainer saved = kontainerRepository.save(kontainer);
             return new DataResponse<>(saved);
         } catch (Exception e) {
@@ -93,6 +94,7 @@ public class KontainerServiceImpl implements KontainerService {
             existing.setKodeKontainer(request.getKodeKontainer());
             existing.setGudang(gudang);
             existing.setWaktuUpdate(LocalDateTime.now());
+            existing.setNomorDokumen(request.getNomorDokumen());
             Kontainer updated = kontainerRepository.save(existing);
             return new DataResponse<>(updated);
         } catch (Exception e) {

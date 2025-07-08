@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Getter
 @Setter
@@ -25,6 +26,7 @@ public class Kontainer {
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gudang_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Gudang gudang;
 
     @Column(name = "waktu_rekam", nullable = false, updatable = false)
@@ -39,4 +41,9 @@ public class Kontainer {
     @Size(max = 30)
     @Column(name = "kode_kontainer", nullable = false, unique = true)
     private String kodeKontainer;
+
+    @NotNull
+    @Size(max = 50)
+    @Column(name = "nomor_dokumen", nullable = false)
+    private String nomorDokumen;
 } 
