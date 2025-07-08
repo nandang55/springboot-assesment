@@ -12,8 +12,10 @@ CREATE TABLE gudang (
     id SERIAL PRIMARY KEY,
     kode_gudang VARCHAR(20) NOT NULL UNIQUE,
     nama_gudang VARCHAR(100) NOT NULL,
+    kantor_id BIGINT NOT NULL,
     waktu_rekam TIMESTAMP NOT NULL,
-    waktu_update TIMESTAMP NOT NULL
+    waktu_update TIMESTAMP NOT NULL,
+    CONSTRAINT fk_gudang_kantor_id FOREIGN KEY (kantor_id) REFERENCES kantor(id)
 );
 
 -- Tabel KONTAINER
