@@ -1,5 +1,6 @@
 com/example/repository/KantorRepository.class
 com/example/controller/KantorController.class
+com/example/exception/GlobalExceptionHandler.class
 com/example/model/pojo/GudangRequest.class
 com/example/config/OpenApiConfig.class
 com/example/service/KantorService.class
