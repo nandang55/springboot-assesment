@@ -1,10 +1,15 @@
 com/example/repository/KantorRepository.class
 com/example/controller/KantorController.class
+com/example/repository/GudangRepository.class
+com/example/controller/GudangController.class
 com/example/wrapper/DataResponse.class
 com/example/config/OpenApiConfig.class
 com/example/service/KantorService.class
+com/example/model/pojo/Gudang.class
 com/example/SpringBootDemoApplication.class
 com/example/service/impl/KantorServiceImpl.class
+com/example/service/GudangService.class
+com/example/service/impl/GudangServiceImpl.class
 com/example/model/pojo/Kantor.class
 com/example/wrapper/ListResponse.class
 com/example/wrapper/DefaultResponse.class
