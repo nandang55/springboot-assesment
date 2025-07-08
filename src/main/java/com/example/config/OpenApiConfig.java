@@ -19,21 +19,11 @@ public class OpenApiConfig {
         devServer.setUrl("http://localhost:8080");
         devServer.setDescription("Server URL dalam Development Environment");
 
-        Contact contact = new Contact();
-        contact.setEmail("nandang@example.com");
-        contact.setName("Nandang Hermawan");
-        contact.setUrl("https://www.example.com");
-
-        License mitLicense = new License().name("MIT License").url("https://choosealicense.com/licenses/mit/");
 
         Info info = new Info()
-                .title("Spring Boot Demo API")
+                .title("Spring Boot Assessment API")
                 .version("1.0")
-                .contact(contact)
-                .description("API ini dibuat untuk pembelajaran Spring Boot. " +
-                        "Mencakup operasi CRUD sederhana dan endpoint hello world.")
-                .termsOfService("https://www.example.com/terms")
-                .license(mitLicense);
+                .description("API ini dibuat untuk assessment spring boot");
 
         return new OpenAPI().info(info).servers(List.of(devServer));
     }

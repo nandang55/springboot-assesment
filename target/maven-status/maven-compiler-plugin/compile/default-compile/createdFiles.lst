@@ -22,4 +22,3 @@ com/example/service/GudangService.class
 com/example/service/impl/GudangServiceImpl.class
 com/example/wrapper/ListResponse.class
 com/example/wrapper/DefaultResponse.class
-com/example/controller/HelloController.class
