@@ -1,16 +1,15 @@
 # Spring Boot Demo Application
 
 Aplikasi Spring Boot sederhana untuk pembelajaran yang mencakup:
-- REST API endpoints
-- JPA dengan H2 database
-- CRUD operations untuk User entity
+- REST API endpoints sederhana
+- Swagger/OpenAPI documentation
+- Hello World examples
 
 ## Fitur
 
 1. **Hello Controller** - Endpoint sederhana untuk testing
-2. **User Management** - CRUD operations untuk User
-3. **H2 Database** - Database in-memory untuk development
-4. **REST API** - Endpoints untuk berbagai operasi
+2. **Swagger UI** - Dokumentasi API interaktif
+3. **REST API** - Endpoints untuk berbagai operasi
 
 ## Cara Menjalankan
 
@@ -42,29 +41,16 @@ Aplikasi Spring Boot sederhana untuk pembelajaran yang mencakup:
 - `POST /api/greet` - Greeting dengan JSON body
 - `GET /api/info` - Informasi aplikasi
 
-### User Endpoints
-- `GET /api/users` - Ambil semua users
-- `GET /api/users/{id}` - Ambil user by ID
-- `POST /api/users` - Buat user baru
-- `PUT /api/users/{id}` - Update user
-- `DELETE /api/users/{id}` - Hapus user
-
 ## Contoh Request
 
-### Membuat User Baru
+### Hello World
 ```bash
-curl -X POST http://localhost:8080/api/users \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "John Doe",
-    "email": "john@example.com",
-    "phone": "08123456789"
-  }'
+curl http://localhost:8080/api/hello
 ```
 
-### Mengambil Semua Users
+### Hello dengan nama
 ```bash
-curl http://localhost:8080/api/users
+curl http://localhost:8080/api/hello/Nandang
 ```
 
 ### Greeting dengan JSON
@@ -74,15 +60,15 @@ curl -X POST http://localhost:8080/api/greet \
   -d '{"name": "Nandang"}'
 ```
 
-## H2 Database Console
+### Informasi Aplikasi
+```bash
+curl http://localhost:8080/api/info
+```
 
-Untuk melihat database, buka browser dan akses:
-`http://localhost:8080/h2-console`
+## Swagger UI
 
-**Connection Details:**
-- JDBC URL: `jdbc:h2:mem:testdb`
-- Username: `sa`
-- Password: `password`
+Untuk melihat dokumentasi API interaktif, buka browser dan akses:
+`http://localhost:8080/swagger-ui.html`
 
 ## Struktur Project
 
@@ -93,13 +79,10 @@ src/
 │   │   └── com/
 │   │       └── example/
 │   │           ├── SpringBootDemoApplication.java
-│   │           ├── controller/
-│   │           │   ├── HelloController.java
-│   │           │   └── UserController.java
-│   │           ├── model/
-│   │           │   └── User.java
-│   │           └── repository/
-│   │               └── UserRepository.java
+│   │           ├── config/
+│   │           │   └── OpenApiConfig.java
+│   │           └── controller/
+│   │               └── HelloController.java
 │   └── resources/
 │       └── application.properties
 └── test/
@@ -113,8 +96,7 @@ src/
 
 - **Spring Boot 3.2.0**
 - **Spring Web** - untuk REST API
-- **Spring Data JPA** - untuk database operations
-- **H2 Database** - database in-memory
+- **Swagger/OpenAPI** - untuk dokumentasi API
 - **Maven** - build tool
 - **Java 17**
 
@@ -122,8 +104,8 @@ src/
 
 Setelah memahami contoh ini, Anda bisa menambahkan:
 - Spring Security untuk authentication
+- Database integration (MySQL, PostgreSQL)
 - Validation untuk input data
 - Exception handling yang lebih baik
 - Unit tests
-- Integration tests
-- Swagger/OpenAPI documentation 
+- Integration tests 
